@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.number-selection {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+input[type="number"] {
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin: 0 0.5rem;
+    width: 100px;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.game-container {
+    margin-top: 2rem;
+}
+
+.target-number {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.factor-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tree-container {
+    min-height: 300px;
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+    width: 100%;
+}
+
+#factorTree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: fit-content;
+    padding: 1rem;
+}
+
+.node-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.branch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.branch {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    position: relative;
+    padding-top: 20px;
+}
+
+.branch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: #3498db;
+    transform: translateX(-50%);
+}
+
+.child-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.child-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: #3498db;
+    transform: translateX(-50%);
+}
+
+.branch::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #3498db;
+}
+
+.node {
+    display: inline-block;
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    min-width: 60px;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.node:not(.prime):hover {
+    background-color: #e8f4f8;
+    transform: scale(1.05);
+}
+
+.node.prime {
+    background-color: #2ecc71;
+    color: white;
+    border-color: #27ae60;
+    cursor: default;
+}
+
+.node.selected {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.completion {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #d4edda;
+    border-radius: 8px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.node {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Tutorial Styles */
+.tutorial-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tutorial-button {
+    background-color: #27ae60;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.tutorial-button:hover {
+    background-color: #219a52;
+}
+
+.tutorial-skip {
+    background-color: #95a5a6;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.tutorial-skip:hover {
+    background-color: #7f8c8d;
+}
+
+/* Tutorial Highlight Animation */
+@keyframes highlight {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(46, 204, 113, 0); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(46, 204, 113, 0.5); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+.node.highlight {
+    animation: highlight 2s ease-in-out infinite;
+}
+
+/* Landing Page Styles */
+.landing-page {
+    text-align: center;
+    padding: 2rem;
+}
+
+.landing-page h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.landing-page p {
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.landing-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tutorial-button, .exercise-button {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tutorial-button {
+    background-color: #27ae60;
+}
+
+.tutorial-button:hover {
+    background-color: #219a52;
+    transform: translateY(-2px);
+}
+
+.exercise-button {
+    background-color: #3498db;
+}
+
+.exercise-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Update existing styles */
+.tutorial-section, .exercise-section {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tutorial-section.visible, .exercise-section.visible {
+    opacity: 1;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.blink {
+    animation: blink 1s ease-in-out infinite;
+} 

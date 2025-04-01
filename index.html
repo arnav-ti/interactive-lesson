@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factor Tree Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Factor Tree Builder</h1>
+        
+        <!-- Landing Page -->
+        <div id="landingPage" class="landing-page">
+            <h2>Welcome to Factor Tree Builder!</h2>
+            <p>Learn how to break down numbers into their prime factors</p>
+            <div class="landing-buttons">
+                <button id="watchTutorial" class="tutorial-button">Watch Tutorial</button>
+                <button id="startExercise" class="exercise-button">Start Exercise</button>
+            </div>
+        </div>
+
+        <!-- Tutorial Section -->
+        <div id="tutorialSection" class="tutorial-section" style="display: none;">
+            <button id="skipTutorial" class="tutorial-skip">Skip Tutorial</button>
+            <div class="tree-container">
+                <div id="factorTree"></div>
+            </div>
+        </div>
+
+        <!-- Exercise Section -->
+        <div id="exerciseSection" class="exercise-section" style="display: none;">
+            <div class="number-selection">
+                <label for="numberInput">Enter a number to factorize:</label>
+                <input type="number" id="numberInput" min="2" value="36">
+                <button id="startButton">Start</button>
+            </div>
+
+            <div class="game-container" style="display: none;">
+                <div class="target-number">
+                    <h2>Target Number: <span id="targetNumber">36</span></h2>
+                </div>
+
+                <div class="factor-input">
+                    <div class="input-group">
+                        <input type="number" id="factor1" placeholder="First factor">
+                        <span>×</span>
+                        <input type="number" id="factor2" placeholder="Second factor">
+                    </div>
+                    <button id="submitFactors">Submit</button>
+                </div>
+
+                <div class="tree-container">
+                    <div id="exerciseTree"></div>
+                </div>
+
+                <div class="completion" id="completion" style="display: none;">
+                    <h3>Great job! You've found all the prime factors!</h3>
+                    <p>Prime factorization: <span id="primeFactorization"></span></p>
+                    <button id="lockButton">Lock it in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
